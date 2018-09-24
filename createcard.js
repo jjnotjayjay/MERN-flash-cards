@@ -19,7 +19,7 @@ export default class CreateCard extends React.Component {
   render() {
     const {topic, sideA, sideB} = this.state
     return (
-      <div className="col-4 offset-md-4 pt-3">
+      <div className="col-4 offset-md-4 p-3 border rounded">
         <h4 className="text-center">Create a Flash Card</h4>
         <div className="form-group">
           <label>Topic: </label>
@@ -52,7 +52,9 @@ export default class CreateCard extends React.Component {
             onChange={(e) => this.handleChange(e, 'sideB')}>
           </textarea>
         </div>
-        <button className="btn btn-primary" id="submitCard" type="submit">Create Card</button>
+        <div className="text-center">
+          <button className="btn btn-primary" id="submitCard" type="submit">Create Card</button>
+        </div>
       </div>
     )
   }
