@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import NavBar from './navbar.js'
 import CreateCard from './createcard.js'
 
 class App extends React.Component {
@@ -23,8 +24,11 @@ class App extends React.Component {
   render() {
     const { view } = this.state
     return (
-      view === 'create' &&
-        <CreateCard addCard={this.addCard}/>
+      <div>
+        <NavBar />
+        {view === 'create' &&
+          <CreateCard addCard={this.addCard}/>}
+      </div>
     )
   }
 }
