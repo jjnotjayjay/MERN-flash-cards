@@ -17,9 +17,9 @@ export default class CreateCard extends React.Component {
   }
 
   render() {
-    const {topic, sideA, sideB} = this.state
+    const { topic, sideA, sideB } = this.state
     return (
-      <div className="col-4 offset-md-4 p-3 border rounded">
+      <div className="col-4 offset-md-4 mt-2 p-3 border rounded">
         <h4 className="text-center">Create a Flash Card</h4>
         <div className="form-group">
           <label>Topic: </label>
@@ -53,7 +53,13 @@ export default class CreateCard extends React.Component {
           </textarea>
         </div>
         <div className="text-center">
-          <button className="btn btn-primary" id="submitCard" type="submit">Create Card</button>
+          <button
+            className="btn btn-primary"
+            id="submitCard"
+            type="submit"
+            onClick={() => this.props.addCard(topic, sideA, sideB)}>
+            Create Card
+          </button>
         </div>
       </div>
     )
