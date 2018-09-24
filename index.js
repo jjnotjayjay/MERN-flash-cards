@@ -25,7 +25,8 @@ class App extends React.Component {
   }
 
   render() {
-    const { view } = this.state
+    const { view, flashcards } = this.state
+    console.log(flashcards)
     return (
       view === 'create' &&
         <CreateCard addCard={this.addCard}/>
