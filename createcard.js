@@ -9,6 +9,7 @@ export default class CreateCard extends React.Component {
       sideB: '',
       confirmationMessage: null
     }
+    this.clearConfirmationMessage = this.clearConfirmationMessage.bind(this)
   }
 
   handleChange(e, id) {
@@ -23,6 +24,13 @@ export default class CreateCard extends React.Component {
       sideA: '',
       sideB: '',
       confirmationMessage: true
+    })
+    window.setTimeout(this.clearConfirmationMessage, 3000)
+  }
+
+  clearConfirmationMessage() {
+    this.setState({
+      confirmationMessage: false
     })
   }
 
