@@ -10,6 +10,7 @@ class App extends React.Component {
       view: 'create',
       flashcards: []
     }
+    this.updateView = this.updateView.bind(this)
     this.addCard = this.addCard.bind(this)
   }
 
@@ -21,11 +22,19 @@ class App extends React.Component {
     })
   }
 
+  updateView(view) {
+    this.setState({
+      view: view
+    })
+  }
+
   render() {
     const { view } = this.state
     return (
       <div>
-        <NavBar />
+        <NavBar updateView={this.updateView}/>
+        {view === 'view' &&
+          <p>Flashcards will display.</p>}
         {view === 'create' &&
           <CreateCard addCard={this.addCard}/>}
       </div>
