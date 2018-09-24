@@ -16,6 +16,14 @@ export default class CreateCard extends React.Component {
     })
   }
 
+  handleSubmit() {
+    this.setState({
+      topic: '',
+      sideA: '',
+      sideB: ''
+    })
+  }
+
   render() {
     const { topic, sideA, sideB } = this.state
     return (
@@ -57,7 +65,11 @@ export default class CreateCard extends React.Component {
             className="btn btn-primary"
             id="submitCard"
             type="submit"
-            onClick={() => this.props.addCard(topic, sideA, sideB)}>
+            onClick={() => {
+              this.props.addCard(topic, sideA, sideB)
+              this.handleSubmit()
+              }
+            }>
             Create Card
           </button>
         </div>
