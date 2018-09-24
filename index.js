@@ -12,18 +12,12 @@ class App extends React.Component {
     this.addCard = this.addCard.bind(this)
   }
 
-  addCard(topic, sideA, sideB) {
-    if (topic && sideA && sideB) {
-      const currentCards = [...this.state.flashcards]
-      currentCards.push({
-        topic: topic,
-        sideA: sideA,
-        sideB: sideB
-      })
-      this.setState({
-        flashcards: currentCards
-      })
-    }
+  addCard(card) {
+    const currentCards = [...this.state.flashcards]
+    currentCards.push(card)
+    this.setState({
+      flashcards: currentCards
+    })
   }
 
   render() {

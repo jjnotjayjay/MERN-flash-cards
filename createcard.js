@@ -9,18 +9,24 @@ export default class CreateCard extends React.Component {
       sideB: '',
       confirmationMessage: null
     }
+    this.handleChange = this.handleChange.bind(this)
     this.clearConfirmationMessage = this.clearConfirmationMessage.bind(this)
   }
 
-  handleChange(e, id) {
+  handleChange(e) {
     this.setState({
-      [id]: e.target.value
+      [e.target.id]: e.target.value
     })
   }
 
   handleSubmit() {
     const { topic, sideA, sideB } = this.state
     if (topic && sideA && sideB) {
+      this.props.addCard({
+        topic: topic,
+        sideA: sideA,
+        sideB: sideB
+      })
       this.setState({
         topic: '',
         sideA: '',
@@ -33,7 +39,7 @@ export default class CreateCard extends React.Component {
 
   clearConfirmationMessage() {
     this.setState({
-      confirmationMessage: false
+      confirmationMessage: null
     })
   }
 
@@ -43,34 +49,34 @@ export default class CreateCard extends React.Component {
       <div className="col-4 offset-md-4 mt-2 p-3 border rounded">
         <h4 className="text-center">Create a Flash Card</h4>
         <div className="form-group">
-          <label>Topic: </label>
+          <label htmlFor="topic">Topic: </label>
           <input
             className="form-control"
-            id="topicInput"
+            id="topic"
             type="text"
             value={topic}
-            onChange={(e) => this.handleChange(e, 'topic')}>
+            onChange={this.handleChange}>
           </input>
         </div>
         <div className="form-group">
-          <label>Side A: </label>
+          <label htmlFor="sideA">Side A: </label>
           <input
             className="form-control"
-            id="sideAInput"
+            id="sideA"
             type="text"
             value={sideA}
-            onChange={(e) => this.handleChange(e, 'sideA')}>
+            onChange={this.handleChange}>
           </input>
         </div>
         <div className="form-group">
-          <label>Side B: </label>
+          <label htmlFor="sideB">Side B: </label>
           <textarea
             className="form-control"
-            id="sideBInput"
+            id="sideB"
             type="text"
             rows="4"
             value={sideB}
-            onChange={(e) => this.handleChange(e, 'sideB')}>
+            onChange={this.handleChange}>
           </textarea>
         </div>
         <div className="text-center">
@@ -78,11 +84,7 @@ export default class CreateCard extends React.Component {
             className="btn btn-primary"
             id="submitCard"
             type="submit"
-            onClick={() => {
-              this.props.addCard(topic, sideA, sideB)
-              this.handleSubmit()
-              }
-            }>
+            onClick={() => this.handleSubmit()}>
             Create Card
           </button>
           {confirmationMessage &&
