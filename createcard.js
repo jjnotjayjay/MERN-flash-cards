@@ -19,7 +19,8 @@ export default class CreateCard extends React.Component {
   }
 
   handleSubmit() {
-    if (this.state.topic && this.state.sideA && this.state.sideB) {
+    const { topic, sideA, sideB } = this.state
+    if (topic && sideA && sideB) {
       this.setState({
         topic: '',
         sideA: '',
