@@ -36,7 +36,7 @@ class App extends React.Component {
       <div>
         <NavBar updateView={this.updateView}/>
         {view === 'view' && !flashcards.length &&
-          <NoCards />}
+          <NoCards updateView={this.updateView}/>}
         {view === 'view' && flashcards.length > 0 &&
           <ViewCards cards={flashcards}/>}
         {view === 'create' &&
