@@ -6,7 +6,8 @@ export default class CreateCard extends React.Component {
     this.state = {
       topic: '',
       sideA: '',
-      sideB: ''
+      sideB: '',
+      confirmationMessage: null
     }
   }
 
@@ -20,12 +21,13 @@ export default class CreateCard extends React.Component {
     this.setState({
       topic: '',
       sideA: '',
-      sideB: ''
+      sideB: '',
+      confirmationMessage: true
     })
   }
 
   render() {
-    const { topic, sideA, sideB } = this.state
+    const { topic, sideA, sideB, confirmationMessage } = this.state
     return (
       <div className="col-4 offset-md-4 mt-2 p-3 border rounded">
         <h4 className="text-center">Create a Flash Card</h4>
@@ -72,6 +74,8 @@ export default class CreateCard extends React.Component {
             }>
             Create Card
           </button>
+          {confirmationMessage &&
+            <p className="mt-2 mb-0">Flashcard created.</p>}
         </div>
       </div>
     )
