@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import NavBar from './navbar.js'
+import ViewCards from './viewcards.js'
 import CreateCard from './createcard.js'
 
 class App extends React.Component {
@@ -29,12 +30,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { view } = this.state
+    const { view, flashcards } = this.state
     return (
       <div>
         <NavBar updateView={this.updateView}/>
         {view === 'view' &&
-          <p>Flashcards will display.</p>}
+          <ViewCards cards={flashcards}/>}
         {view === 'create' &&
           <CreateCard addCard={this.addCard}/>}
       </div>
