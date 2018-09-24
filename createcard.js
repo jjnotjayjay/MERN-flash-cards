@@ -19,13 +19,15 @@ export default class CreateCard extends React.Component {
   }
 
   handleSubmit() {
-    this.setState({
-      topic: '',
-      sideA: '',
-      sideB: '',
-      confirmationMessage: true
-    })
-    window.setTimeout(this.clearConfirmationMessage, 3000)
+    if (this.state.topic && this.state.sideA && this.state.sideB) {
+      this.setState({
+        topic: '',
+        sideA: '',
+        sideB: '',
+        confirmationMessage: true
+      })
+      window.setTimeout(this.clearConfirmationMessage, 3000)
+    }
   }
 
   clearConfirmationMessage() {

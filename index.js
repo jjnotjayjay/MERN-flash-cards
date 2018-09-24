@@ -13,15 +13,17 @@ class App extends React.Component {
   }
 
   addCard(topic, sideA, sideB) {
-    const currentCards = [...this.state.flashcards]
-    currentCards.push({
-      topic: topic,
-      sideA: sideA,
-      sideB: sideB
-    })
-    this.setState({
-      flashcards: currentCards
-    })
+    if (topic && sideA && sideB) {
+      const currentCards = [...this.state.flashcards]
+      currentCards.push({
+        topic: topic,
+        sideA: sideA,
+        sideB: sideB
+      })
+      this.setState({
+        flashcards: currentCards
+      })
+    }
   }
 
   render() {
