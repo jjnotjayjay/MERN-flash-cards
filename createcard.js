@@ -4,13 +4,23 @@ export default class CreateCard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      topic: '',
-      sideA: '',
-      sideB: '',
+      topic: props.selected ? props.selected.topic : '',
+      sideA: props.selected ? props.selected.sideA : '',
+      sideB: props.selected ? props.selected.sideB : '',
       confirmationMessage: null
     }
     this.handleChange = this.handleChange.bind(this)
     this.clearConfirmationMessage = this.clearConfirmationMessage.bind(this)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.selected !== prevProps.selected && !this.props.selected) {
+      this.setState({
+        topic: '',
+        sideA: '',
+        sideB: ''
+      })
+    }
   }
 
   handleChange(e) {
@@ -85,10 +95,10 @@ export default class CreateCard extends React.Component {
             id="submitCard"
             type="submit"
             onClick={() => this.handleSubmit()}>
-            Create Card
+            {this.props.selected ? 'Save Card' : 'Create Card'}
           </button>
           {confirmationMessage &&
-            <p className="mt-2 mb-0">Flashcard created.</p>}
+            <p className="mt-2 mb-0">Flashcard saved.</p>}
         </div>
       </div>
     )
