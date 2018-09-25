@@ -10,10 +10,12 @@ class App extends React.Component {
     const initialCards = JSON.parse(localStorage.getItem('flashcards')) || []
     this.state = {
       view: 'view',
-      flashcards: initialCards
+      flashcards: initialCards,
+      selectedCard: null
     }
     this.updateView = this.updateView.bind(this)
     this.addCard = this.addCard.bind(this)
+    this.updateSelected = this.updateSelected.bind(this)
   }
 
   addCard(card) {
@@ -23,6 +25,13 @@ class App extends React.Component {
       flashcards: currentCards
     })
     localStorage.setItem('flashcards', JSON.stringify(currentCards))
+  }
+
+  updateSelected(index) {
+    this.setState({
+      selectedCard: index,
+      view: 'create'
+    })
   }
 
   updateView(view) {
@@ -37,7 +46,7 @@ class App extends React.Component {
       <div>
         <NavBar updateView={this.updateView}/>
         {view === 'view' &&
-          <ViewCards cards={flashcards} updateView={this.updateView}/>}
+          <ViewCards cards={flashcards} updateView={this.updateView} updateSelected={this.updateSelected}/>}
         {view === 'create' &&
           <CreateCard addCard={this.addCard}/>}
       </div>
