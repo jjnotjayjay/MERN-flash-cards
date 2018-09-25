@@ -19,7 +19,7 @@ export default function ViewCards(props) {
                   <h4 className="card-title text-center">{card.sideA}</h4>
                   <hr/>
                   <p className="card-text text-center">{card.sideB}</p>
-                  <i className="fas fa-edit float-right"></i>
+                  <i className="fas fa-edit float-right" onClick={() => props.updateView('create')}></i>
                 </div>
               </div>
             )
