@@ -7,9 +7,10 @@ import CreateCard from './createcard.js'
 class App extends React.Component {
   constructor(props) {
     super(props)
+    const initialCards = JSON.parse(localStorage.getItem('flashcards')) || []
     this.state = {
       view: 'view',
-      flashcards: []
+      flashcards: initialCards
     }
     this.updateView = this.updateView.bind(this)
     this.addCard = this.addCard.bind(this)
@@ -21,6 +22,7 @@ class App extends React.Component {
     this.setState({
       flashcards: currentCards
     })
+    localStorage.setItem('flashcards', JSON.stringify(currentCards))
   }
 
   updateView(view) {
