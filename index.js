@@ -41,14 +41,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { view, flashcards } = this.state
+    const { view, flashcards, selectedCard } = this.state
     return (
       <div>
         <NavBar updateView={this.updateView}/>
         {view === 'view' &&
           <ViewCards cards={flashcards} updateView={this.updateView} updateSelected={this.updateSelected}/>}
         {view === 'create' &&
-          <CreateCard addCard={this.addCard}/>}
+          <CreateCard selected={flashcards[selectedCard]} addCard={this.addCard}/>}
       </div>
     )
   }

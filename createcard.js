@@ -4,9 +4,9 @@ export default class CreateCard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      topic: '',
-      sideA: '',
-      sideB: '',
+      topic: props.selected ? props.selected.topic : '',
+      sideA: props.selected ? props.selected.sideA : '',
+      sideB: props.selected ? props.selected.sideB : '',
       confirmationMessage: null
     }
     this.handleChange = this.handleChange.bind(this)
