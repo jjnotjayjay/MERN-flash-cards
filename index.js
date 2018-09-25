@@ -20,7 +20,12 @@ class App extends React.Component {
 
   addCard(card) {
     const currentCards = [...this.state.flashcards]
-    currentCards.push(card)
+    if (this.state.selectedCard === null) {
+      currentCards.push(card)
+    }
+    else {
+      currentCards[this.state.selectedCard] = card
+    }
     this.setState({
       flashcards: currentCards,
       selectedCard: null
@@ -43,6 +48,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     const { view, flashcards, selectedCard } = this.state
     return (
       <div>
