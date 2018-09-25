@@ -1,14 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import NavBar from './navbar.js'
+import ViewCards from './viewcards.js'
 import CreateCard from './createcard.js'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      view: 'create',
+      view: 'view',
       flashcards: []
     }
+    this.updateView = this.updateView.bind(this)
     this.addCard = this.addCard.bind(this)
   }
 
@@ -20,11 +23,22 @@ class App extends React.Component {
     })
   }
 
+  updateView(view) {
+    this.setState({
+      view: view
+    })
+  }
+
   render() {
-    const { view } = this.state
+    const { view, flashcards } = this.state
     return (
-      view === 'create' &&
-        <CreateCard addCard={this.addCard}/>
+      <div>
+        <NavBar updateView={this.updateView}/>
+        {view === 'view' &&
+          <ViewCards cards={flashcards} updateView={this.updateView}/>}
+        {view === 'create' &&
+          <CreateCard addCard={this.addCard}/>}
+      </div>
     )
   }
 }
