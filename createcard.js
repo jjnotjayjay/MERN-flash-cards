@@ -13,6 +13,16 @@ export default class CreateCard extends React.Component {
     this.clearConfirmationMessage = this.clearConfirmationMessage.bind(this)
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.selected !== prevProps.selected && !this.props.selected) {
+      this.setState({
+        topic: '',
+        sideA: '',
+        sideB: ''
+      })
+    }
+  }
+
   handleChange(e) {
     this.setState({
       [e.target.id]: e.target.value
