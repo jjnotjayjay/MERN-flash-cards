@@ -95,10 +95,10 @@ export default class CreateCard extends React.Component {
             id="submitCard"
             type="submit"
             onClick={() => this.handleSubmit()}>
-            Create Card
+            {this.props.selected ? 'Save Card' : 'Create Card'}
           </button>
           {confirmationMessage &&
-            <p className="mt-2 mb-0">Flashcard created.</p>}
+            <p className="mt-2 mb-0">Flashcard saved.</p>}
         </div>
       </div>
     )
