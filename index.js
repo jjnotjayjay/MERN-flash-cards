@@ -48,7 +48,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     const { view, flashcards, selectedCard } = this.state
     return (
       <div>
