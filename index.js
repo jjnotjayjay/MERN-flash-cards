@@ -22,7 +22,8 @@ class App extends React.Component {
     const currentCards = [...this.state.flashcards]
     currentCards.push(card)
     this.setState({
-      flashcards: currentCards
+      flashcards: currentCards,
+      selectedCard: null
     })
     localStorage.setItem('flashcards', JSON.stringify(currentCards))
   }
@@ -36,7 +37,8 @@ class App extends React.Component {
 
   updateView(view) {
     this.setState({
-      view: view
+      view: view,
+      selectedCard: null
     })
   }
 
