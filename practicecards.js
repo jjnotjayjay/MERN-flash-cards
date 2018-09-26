@@ -43,9 +43,9 @@ export default class PracticeCards extends React.Component {
       showAnswerIconClass += ' rotate'
     }
     return (
-      <div className="col-6 offset-md-3 vertical-center">
+      <div className="col-6 offset-md-3 d-flex align-items-center full-height">
         <i className="fas fa-chevron-left fa-2x left-arrow pointer" onClick={() => this.changeCard('left')}></i>
-        <div className="card">
+        <div className="card w-100">
           <div className="card-body">
             <p className="text-muted card-subtitle text-right font-italic">{cards[currentIndex].topic}</p>
             <h4 className="card-title text-center mt-1">{cards[currentIndex].sideA}</h4>
