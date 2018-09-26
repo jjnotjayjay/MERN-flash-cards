@@ -1,0 +1,37 @@
+.full-height {
+  height: 90vh;
+}
+
+.show-answer-icon {
+  transition: transform 0.5s;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+.nav-pointer:hover,
+.show-answer-text:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 45vh;
+  left: -3vw;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 45vh;
+  right: -3vw;
+}

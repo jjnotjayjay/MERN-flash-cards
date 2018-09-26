@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import NavBar from './navbar.js'
 import ViewCards from './viewcards.js'
 import CreateCard from './createcard.js'
+import PracticeCards from './practicecards.js'
 
 class App extends React.Component {
   constructor(props) {
@@ -66,6 +67,8 @@ class App extends React.Component {
           <ViewCards cards={flashcards} updateView={this.updateView} updateSelected={this.updateSelected} deleteCard={this.deleteCard}/>}
         {view === 'create' &&
           <CreateCard selected={flashcards[selectedCard]} addCard={this.addCard}/>}
+        {view === 'practice' &&
+          <PracticeCards cards={flashcards}/>}
       </div>
     )
   }
