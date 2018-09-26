@@ -68,7 +68,7 @@ class App extends React.Component {
         {view === 'create' &&
           <CreateCard selected={flashcards[selectedCard]} addCard={this.addCard}/>}
         {view === 'practice' &&
-          <PracticeCards />}
+          <PracticeCards cards={flashcards}/>}
       </div>
     )
   }
