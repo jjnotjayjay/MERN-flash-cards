@@ -35,7 +35,9 @@ class App extends React.Component {
   }
 
   deleteCard(index) {
-    console.log(index)
+    const currentCards = [...this.state.flashcards]
+    currentCards.splice(index, 1)
+    console.log(currentCards)
   }
 
   updateSelected(index) {
