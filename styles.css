@@ -1,8 +1,25 @@
-.nav-link:hover {
+.fas {
+  transition: transform 0.5s;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+.nav-link:hover,
+.show-answer:hover {
   cursor: pointer;
   text-decoration: underline;
 }
 
 .fas:hover {
   cursor: pointer;
+}
+
+.vertical-center {
+  margin-top: 35vh;
+}
+
+.hidden {
+  display: none;
 }
