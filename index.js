@@ -40,6 +40,7 @@ class App extends React.Component {
     this.setState({
       flashcards: currentCards
     })
+    localStorage.setItem('flashcards', JSON.stringify(currentCards))
   }
 
   updateSelected(index) {
