@@ -15,6 +15,7 @@ class App extends React.Component {
     }
     this.updateView = this.updateView.bind(this)
     this.addCard = this.addCard.bind(this)
+    this.deleteCard = this.deleteCard.bind(this)
     this.updateSelected = this.updateSelected.bind(this)
   }
 
@@ -29,6 +30,15 @@ class App extends React.Component {
     this.setState({
       flashcards: currentCards,
       selectedCard: null
+    })
+    localStorage.setItem('flashcards', JSON.stringify(currentCards))
+  }
+
+  deleteCard(index) {
+    const currentCards = [...this.state.flashcards]
+    currentCards.splice(index, 1)
+    this.setState({
+      flashcards: currentCards
     })
     localStorage.setItem('flashcards', JSON.stringify(currentCards))
   }
@@ -53,7 +63,7 @@ class App extends React.Component {
       <div>
         <NavBar updateView={this.updateView}/>
         {view === 'view' &&
-          <ViewCards cards={flashcards} updateView={this.updateView} updateSelected={this.updateSelected}/>}
+          <ViewCards cards={flashcards} updateView={this.updateView} updateSelected={this.updateSelected} deleteCard={this.deleteCard}/>}
         {view === 'create' &&
           <CreateCard selected={flashcards[selectedCard]} addCard={this.addCard}/>}
       </div>
