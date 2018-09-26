@@ -6,7 +6,7 @@
   transform: rotate(90deg);
 }
 
-.nav-link:hover,
+.nav-pointer:hover,
 .show-answer-text:hover {
   cursor: pointer;
   text-decoration: underline;
