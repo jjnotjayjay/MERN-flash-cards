@@ -1,0 +1,8 @@
+.nav-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.fas:hover {
+  cursor: pointer;
+}
