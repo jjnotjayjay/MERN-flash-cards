@@ -19,8 +19,8 @@ export default function ViewCards(props) {
                   <h4 className="card-title text-center">{card.sideA}</h4>
                   <hr/>
                   <p className="card-text text-center">{card.sideB}</p>
-                  <i className="fas fa-times float-right" onClick={() => props.deleteCard(index)}></i>
-                  <i className="fas fa-edit float-right mr-2" onClick={() => props.updateSelected(index)}></i>
+                  <i className="fas fa-times float-right pointer" onClick={() => props.deleteCard(index)}></i>
+                  <i className="fas fa-edit float-right mr-2 pointer" onClick={() => props.updateSelected(index)}></i>
                 </div>
               </div>
             )

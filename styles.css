@@ -1,4 +1,4 @@
-.fas {
+.show-answer-icon {
   transition: transform 0.5s;
 }
 
@@ -7,12 +7,12 @@
 }
 
 .nav-link:hover,
-.show-answer:hover {
+.show-answer-text:hover {
   cursor: pointer;
   text-decoration: underline;
 }
 
-.fas:hover {
+.pointer:hover {
   cursor: pointer;
 }
 
