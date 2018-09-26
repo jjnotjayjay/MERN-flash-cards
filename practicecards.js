@@ -25,6 +25,7 @@ export default class PracticeCards extends React.Component {
     }
     return (
       <div className="col-6 offset-md-3 vertical-center">
+        <i className="fas fa-chevron-left fa-2x left-arrow"></i>
         <div className="card">
           <div className="card-body">
             <p className="text-muted card-subtitle text-right font-italic">{cards[currentCard].topic}</p>
@@ -36,6 +37,7 @@ export default class PracticeCards extends React.Component {
             <p className={showAnswer ? 'mt-2 text-center' : 'hidden'}>{cards[currentCard].sideB}</p>
           </div>
         </div>
+        <i className="fas fa-chevron-right fa-2x right-arrow"></i>
       </div>
     )
   }

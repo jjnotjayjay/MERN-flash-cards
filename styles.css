@@ -23,3 +23,15 @@
 .hidden {
   display: none;
 }
+
+.left-arrow {
+  position: absolute;
+  top: 12vh;
+  left: -3vw;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 12vh;
+  right: -3vw;
+}
