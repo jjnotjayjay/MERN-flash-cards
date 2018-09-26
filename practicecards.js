@@ -30,14 +30,14 @@ export default class PracticeCards extends React.Component {
     })
   }
 
-  mod(x, n) {
+  getPositiveModForCardIndex(x, n) {
     return (x % n + n) % n
   }
 
   render() {
     const { currentCard, showAnswer } = this.state
     const { cards } = this.props
-    const currentIndex = this.mod(currentCard, cards.length)
+    const currentIndex = this.getPositiveModForCardIndex(currentCard, cards.length)
     let showAnswerIconClass = 'fas fa-chevron-circle-right'
     if (showAnswer) {
       showAnswerIconClass += ' rotate'
