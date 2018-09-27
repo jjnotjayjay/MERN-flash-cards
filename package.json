@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify index.js -vd -t babelify -o main.js"
+    "watch": "watchify index.js -vd -t babelify -o main.js",
+    "build": "browserify index.js -t babelify -o main.js"
   },
   "keywords": [],
   "author": "",
