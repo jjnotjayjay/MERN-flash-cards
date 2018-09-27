@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class CreateCard extends React.Component {
+export default class CardForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -14,7 +14,7 @@ export default class CreateCard extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.selected !== prevProps.selected && !this.props.selected) {
+    if (this.props.selected !== prevProps.selected) {
       this.setState({
         topic: '',
         sideA: '',
