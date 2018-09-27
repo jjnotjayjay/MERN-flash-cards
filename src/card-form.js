@@ -10,6 +10,7 @@ export default class CardForm extends React.Component {
       confirmationMessage: null
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.clearConfirmationMessage = this.clearConfirmationMessage.bind(this)
   }
 
@@ -29,7 +30,7 @@ export default class CardForm extends React.Component {
     })
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
     const { topic, sideA, sideB } = this.state
     if (topic && sideA && sideB) {
       this.props.addCard({
@@ -45,6 +46,7 @@ export default class CardForm extends React.Component {
       })
       window.setTimeout(this.clearConfirmationMessage, 3000)
     }
+    e.preventDefault()
   }
 
   clearConfirmationMessage() {
@@ -56,7 +58,7 @@ export default class CardForm extends React.Component {
   render() {
     const { topic, sideA, sideB, confirmationMessage } = this.state
     return (
-      <div className="col-4 offset-md-4 mt-2 p-3 border rounded">
+      <form className="col-4 offset-md-4 mt-2 p-3 border rounded" onSubmit={this.handleSubmit}>
         <h4 className="text-center">Create a Flash Card</h4>
         <div className="form-group">
           <label htmlFor="topic">Topic: </label>
@@ -95,14 +97,13 @@ export default class CardForm extends React.Component {
         <div className="text-center">
           <button
             className="btn btn-primary"
-            type="submit"
-            onClick={() => this.handleSubmit()}>
+            type="submit">
             {this.props.selected ? 'Save Card' : 'Create Card'}
           </button>
           {confirmationMessage &&
             <p className="mt-2 mb-0">{confirmationMessage}</p>}
         </div>
-      </div>
+      </form>
     )
   }
 }
