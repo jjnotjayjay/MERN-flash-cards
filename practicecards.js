@@ -42,8 +42,9 @@ export default class PracticeCards extends React.Component {
     if (showAnswer) {
       showAnswerIconClass += ' rotate'
     }
+    const percentageComplete = currentIndex / cards.length * 100
     return (
-      <div className="col-6 offset-md-3 d-flex align-items-center full-height">
+      <div className="col-6 offset-md-3 d-flex flex-wrap align-content-center full-height">
         <i className="fas fa-chevron-left fa-2x left-arrow pointer" onClick={() => this.changeCard('left')}></i>
         <div className="card w-100">
           <div className="card-body">
@@ -57,6 +58,9 @@ export default class PracticeCards extends React.Component {
           </div>
         </div>
         <i className="fas fa-chevron-right fa-2x pointer right-arrow" onClick={() => this.changeCard('right')}></i>
+        <div className="progress w-100 mt-3">
+          <div className="progress-bar" role="progressbar" style={{width: percentageComplete + '%'}}></div>
+        </div>
       </div>
     )
   }
