@@ -41,7 +41,7 @@ export default class CardForm extends React.Component {
         topic: '',
         sideA: '',
         sideB: '',
-        confirmationMessage: true
+        confirmationMessage: 'Flashcard saved.'
       })
       window.setTimeout(this.clearConfirmationMessage, 3000)
     }
@@ -98,7 +98,7 @@ export default class CardForm extends React.Component {
             {this.props.selected ? 'Save Card' : 'Create Card'}
           </button>
           {confirmationMessage &&
-            <p className="mt-2 mb-0">Flashcard saved.</p>}
+            <p className="mt-2 mb-0">{confirmationMessage}</p>}
         </div>
       </div>
     )
