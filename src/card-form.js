@@ -25,7 +25,7 @@ export default class CardForm extends React.Component {
 
   handleChange(e) {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
@@ -63,6 +63,7 @@ export default class CardForm extends React.Component {
           <input
             className="form-control"
             id="topic"
+            name="topic"
             type="text"
             value={topic}
             onChange={this.handleChange}>
@@ -73,6 +74,7 @@ export default class CardForm extends React.Component {
           <input
             className="form-control"
             id="sideA"
+            name="sideA"
             type="text"
             value={sideA}
             onChange={this.handleChange}>
@@ -83,6 +85,7 @@ export default class CardForm extends React.Component {
           <textarea
             className="form-control"
             id="sideB"
+            name="sideB"
             type="text"
             rows="4"
             value={sideB}
