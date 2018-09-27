@@ -70,10 +70,10 @@ export default class CardForm extends React.Component {
           </input>
         </div>
         <div className="form-group">
-          <label htmlFor="sideA">Side A: </label>
+          <label htmlFor="side-a">Side A: </label>
           <input
             className="form-control"
-            id="sideA"
+            id="side-a"
             name="sideA"
             type="text"
             value={sideA}
@@ -81,10 +81,10 @@ export default class CardForm extends React.Component {
           </input>
         </div>
         <div className="form-group">
-          <label htmlFor="sideB">Side B: </label>
+          <label htmlFor="side-b">Side B: </label>
           <textarea
             className="form-control"
-            id="sideB"
+            id="side-b"
             name="sideB"
             type="text"
             rows="4"
@@ -95,7 +95,6 @@ export default class CardForm extends React.Component {
         <div className="text-center">
           <button
             className="btn btn-primary"
-            id="submitCard"
             type="submit"
             onClick={() => this.handleSubmit()}>
             {this.props.selected ? 'Save Card' : 'Create Card'}
