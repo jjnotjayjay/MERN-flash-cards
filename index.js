@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import NavBar from './navbar.js'
-import ViewCards from './viewcards.js'
-import CreateCard from './createcard.js'
-import PracticeCards from './practicecards.js'
+import NavBar from './nav-bar.js'
+import ViewCards from './view-cards.js'
+import CreateCard from './create-card.js'
+import PracticeCards from './practice-cards.js'
 
 class App extends React.Component {
   constructor(props) {
