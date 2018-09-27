@@ -9,10 +9,12 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     const initialCards = JSON.parse(localStorage.getItem('flashcards')) || []
+    const initialId = JSON.parse(localStorage.getItem('nextId')) || 1
     this.state = {
       view: 'view',
       flashcards: initialCards,
-      selectedCard: null
+      selectedCard: null,
+      nextId: initialId
     }
     this.onUnload = this.onUnload.bind(this)
     this.updateView = this.updateView.bind(this)
@@ -27,15 +29,23 @@ class App extends React.Component {
 
   onUnload() {
     localStorage.setItem('flashcards', JSON.stringify(this.state.flashcards))
+    localStorage.setItem('nextId', JSON.stringify(this.state.nextId))
   }
 
   addCard(card) {
     const currentCards = [...this.state.flashcards]
     if (this.state.selectedCard === null) {
-      currentCards.push(card)
+      const id = this.state.nextId
+      currentCards.push(Object.assign({}, card, { id: id }))
+      this.setState({
+        nextId: id + 1
+      })
     }
     else {
-      currentCards[this.state.selectedCard] = card
+      const cardToUpdate = currentCards.find(card => card.id === this.state.selectedCard)
+      cardToUpdate.topic = card.topic
+      cardToUpdate.sideA = card.sideA
+      cardToUpdate.sideB = card.sideB
     }
     this.setState({
       flashcards: currentCards,
@@ -43,17 +53,18 @@ class App extends React.Component {
     })
   }
 
-  deleteCard(index) {
+  deleteCard(id) {
     const currentCards = [...this.state.flashcards]
-    currentCards.splice(index, 1)
+    const indexToDelete = currentCards.findIndex(card => card.id === id)
+    currentCards.splice(indexToDelete, 1)
     this.setState({
       flashcards: currentCards
     })
   }
 
-  updateSelected(index) {
+  updateSelected(id) {
     this.setState({
-      selectedCard: index,
+      selectedCard: id,
       view: 'create'
     })
   }
@@ -67,13 +78,14 @@ class App extends React.Component {
 
   render() {
     const { view, flashcards, selectedCard } = this.state
+    const cardToUpdate = flashcards.find(card => card.id === selectedCard)
     return (
       <div>
         <NavBar updateView={this.updateView}/>
         {view === 'view' &&
           <ViewCards cards={flashcards} updateView={this.updateView} updateSelected={this.updateSelected} deleteCard={this.deleteCard}/>}
         {view === 'create' &&
-          <CardForm selected={flashcards[selectedCard]} addCard={this.addCard}/>}
+          <CardForm selected={cardToUpdate} addCard={this.addCard}/>}
         {view === 'practice' &&
           <PracticeCards cards={flashcards}/>}
       </div>
