@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import NavBar from './nav-bar.js'
 import ViewCards from './view-cards.js'
-import CreateCard from './create-card.js'
+import CardForm from './card-form.js'
 import PracticeCards from './practice-cards.js'
 
 class App extends React.Component {
@@ -66,7 +66,7 @@ class App extends React.Component {
         {view === 'view' &&
           <ViewCards cards={flashcards} updateView={this.updateView} updateSelected={this.updateSelected} deleteCard={this.deleteCard}/>}
         {view === 'create' &&
-          <CreateCard selected={flashcards[selectedCard]} addCard={this.addCard}/>}
+          <CardForm selected={flashcards[selectedCard]} addCard={this.addCard}/>}
         {view === 'practice' &&
           <PracticeCards cards={flashcards}/>}
       </div>
