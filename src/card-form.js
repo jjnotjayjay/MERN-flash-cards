@@ -38,11 +38,12 @@ export default class CardForm extends React.Component {
         sideA: sideA,
         sideB: sideB
       })
+      const confirmationMessageContent = this.props.selected ? 'Flashcard saved.' : 'Flashcard created.'
       this.setState({
         topic: '',
         sideA: '',
         sideB: '',
-        confirmationMessage: 'Flashcard saved.'
+        confirmationMessage: confirmationMessageContent
       })
       window.setTimeout(this.clearConfirmationMessage, 3000)
     }
