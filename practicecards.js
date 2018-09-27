@@ -57,7 +57,9 @@ export default class PracticeCards extends React.Component {
           </div>
         </div>
         <i className="fas fa-chevron-right fa-2x pointer right-arrow" onClick={() => this.changeCard('right')}></i>
-        <div className="progress w-100 mt-3"></div>
+        <div className="progress w-100 mt-3">
+          <div className="progress-bar" role="progressbar" style={{width: '25%'}}></div>
+        </div>
       </div>
     )
   }
