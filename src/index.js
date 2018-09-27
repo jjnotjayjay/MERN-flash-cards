@@ -14,10 +14,19 @@ class App extends React.Component {
       flashcards: initialCards,
       selectedCard: null
     }
+    this.onUnload = this.onUnload.bind(this)
     this.updateView = this.updateView.bind(this)
     this.addCard = this.addCard.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
     this.updateSelected = this.updateSelected.bind(this)
+  }
+
+  componentDidMount() {
+    window.addEventListener('beforeunload', this.onUnload)
+  }
+
+  onUnload() {
+    localStorage.setItem('flashcards', JSON.stringify(this.state.flashcards))
   }
 
   addCard(card) {
@@ -32,7 +41,6 @@ class App extends React.Component {
       flashcards: currentCards,
       selectedCard: null
     })
-    localStorage.setItem('flashcards', JSON.stringify(currentCards))
   }
 
   deleteCard(index) {
@@ -41,7 +49,6 @@ class App extends React.Component {
     this.setState({
       flashcards: currentCards
     })
-    localStorage.setItem('flashcards', JSON.stringify(currentCards))
   }
 
   updateSelected(index) {
