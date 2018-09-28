@@ -20,8 +20,10 @@ function RenderCards(props) {
               <h4 className="card-title">{card.sideA}</h4>
               <hr/>
               <p className="card-text text-height">{card.sideB}</p>
-              <i className="fas fa-times float-right pointer" onClick={() => props.deleteCard(card.id)}></i>
-              <i className="fas fa-edit float-right mr-3 pointer" onClick={() => props.updateSelected(card.id)}></i>
+              <div className="edit-delete-icons">
+                <i className="fas fa-times float-right pointer" onClick={() => props.deleteCard(card.id)}></i>
+                <i className="fas fa-edit float-right mr-3 pointer" onClick={() => props.updateSelected(card.id)}></i>
+              </div>
             </div>
           </div>
         )

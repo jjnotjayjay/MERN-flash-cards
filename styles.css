@@ -21,6 +21,12 @@
   overflow: auto;
 }
 
+.edit-delete-icons {
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.25rem;
+}
+
 .full-height {
   height: 90vh;
 }
