@@ -1,3 +1,44 @@
+@media (min-width: 992px) {
+  .card-height {
+    height: 14rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .card-height {
+    height: 16rem;
+  }
+}
+
+@media (min-width: 1800px) {
+  .card-height {
+    height: 20rem;
+  }
+}
+
+body {
+  background: url('bg.jpg');
+}
+
+.form-bg {
+  background: white;
+}
+
+.progress-color {
+  background-color: #eee;
+}
+
+.text-height {
+  height: 3rem;
+  overflow: auto;
+}
+
+.edit-delete-icons {
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.25rem;
+}
+
 .full-height {
   height: 90vh;
 }

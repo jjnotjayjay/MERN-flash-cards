@@ -45,21 +45,21 @@ export default class PracticeCards extends React.Component {
     }
     const percentageComplete = currentIndex / cards.length * 100
     return (
-      <div className="col-6 offset-md-3 d-flex flex-wrap align-content-center full-height">
+      <div className="col-10 offset-1 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 d-flex flex-wrap align-content-center full-height">
         <i className="fas fa-chevron-left fa-2x left-arrow pointer" onClick={() => this.changeCard('left')}></i>
-        <div className="card w-100">
+        <div className="card w-100 card-height shadow">
           <div className="card-body">
             <p className="text-muted card-subtitle text-right font-italic">{cardToRender.topic}</p>
-            <h4 className="card-title text-center mt-1">{cardToRender.sideA}</h4>
+            <h4 className="card-title mt-1 mb-3">{cardToRender.sideA}</h4>
             <div onClick={this.toggleAnswer}>
               <i className={showAnswerIconClass}></i>
               <span className="font-italic ml-2 show-answer-text">Show answer</span>
             </div>
-            <p className={showAnswer ? 'mt-2 text-center' : 'hidden'}>{cardToRender.sideB}</p>
+            <p className={showAnswer ? 'mt-3 mb-1' : 'hidden'}>{cardToRender.sideB}</p>
           </div>
         </div>
         <i className="fas fa-chevron-right fa-2x pointer right-arrow" onClick={() => this.changeCard('right')}></i>
-        <div className="progress w-100 mt-3">
+        <div className="progress w-100 mt-3 progress-color">
           <div className="progress-bar" role="progressbar" style={{width: percentageComplete + '%'}}></div>
         </div>
       </div>
