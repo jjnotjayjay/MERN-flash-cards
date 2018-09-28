@@ -16,6 +16,18 @@
   }
 }
 
+body {
+  background: url('bg.jpg');
+}
+
+.form-bg {
+  background: white;
+}
+
+.progress-color {
+  background-color: #eee;
+}
+
 .text-height {
   height: 3rem;
   overflow: auto;
