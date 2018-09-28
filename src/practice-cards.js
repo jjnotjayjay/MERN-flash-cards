@@ -47,7 +47,7 @@ export default class PracticeCards extends React.Component {
     return (
       <div className="col-10 offset-1 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 d-flex flex-wrap align-content-center full-height">
         <i className="fas fa-chevron-left fa-2x left-arrow pointer" onClick={() => this.changeCard('left')}></i>
-        <div className="card w-100 card-height">
+        <div className="card w-100 card-height shadow-sm">
           <div className="card-body">
             <p className="text-muted card-subtitle text-right font-italic">{cardToRender.topic}</p>
             <h4 className="card-title mt-1 mb-3">{cardToRender.sideA}</h4>
