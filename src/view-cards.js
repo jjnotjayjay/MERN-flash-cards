@@ -14,7 +14,7 @@ function RenderCards(props) {
     <div className="col-6 offset-md-3">
       {props.cards.map((card, index) => {
         return (
-          <div className="card mt-2" key={index}>
+          <div className="card mb-4 mt-2" key={index}>
             <div className="card-body">
               <p className="card-subtitle text-muted text-right font-italic mb-1">{card.topic}</p>
               <h4 className="card-title text-center">{card.sideA}</h4>

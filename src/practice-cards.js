@@ -50,12 +50,12 @@ export default class PracticeCards extends React.Component {
         <div className="card w-100">
           <div className="card-body">
             <p className="text-muted card-subtitle text-right font-italic">{cardToRender.topic}</p>
-            <h4 className="card-title text-center mt-1">{cardToRender.sideA}</h4>
+            <h4 className="card-title text-center mt-1 mb-3">{cardToRender.sideA}</h4>
             <div onClick={this.toggleAnswer}>
               <i className={showAnswerIconClass}></i>
               <span className="font-italic ml-2 show-answer-text">Show answer</span>
             </div>
-            <p className={showAnswer ? 'mt-2 text-center' : 'hidden'}>{cardToRender.sideB}</p>
+            <p className={showAnswer ? 'mt-3 text-center' : 'hidden'}>{cardToRender.sideB}</p>
           </div>
         </div>
         <i className="fas fa-chevron-right fa-2x pointer right-arrow" onClick={() => this.changeCard('right')}></i>
