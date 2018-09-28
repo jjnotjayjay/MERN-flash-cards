@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class CreateCard extends React.Component {
+export default class CardForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -10,11 +10,12 @@ export default class CreateCard extends React.Component {
       confirmationMessage: null
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.clearConfirmationMessage = this.clearConfirmationMessage.bind(this)
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.selected !== prevProps.selected && !this.props.selected) {
+    if (this.props.selected !== prevProps.selected) {
       this.setState({
         topic: '',
         sideA: '',
@@ -25,11 +26,11 @@ export default class CreateCard extends React.Component {
 
   handleChange(e) {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
     const { topic, sideA, sideB } = this.state
     if (topic && sideA && sideB) {
       this.props.addCard({
@@ -37,14 +38,16 @@ export default class CreateCard extends React.Component {
         sideA: sideA,
         sideB: sideB
       })
+      const confirmationMessageContent = this.props.selected ? 'Flashcard saved.' : 'Flashcard created.'
       this.setState({
         topic: '',
         sideA: '',
         sideB: '',
-        confirmationMessage: true
+        confirmationMessage: confirmationMessageContent
       })
       window.setTimeout(this.clearConfirmationMessage, 3000)
     }
+    e.preventDefault()
   }
 
   clearConfirmationMessage() {
@@ -56,33 +59,36 @@ export default class CreateCard extends React.Component {
   render() {
     const { topic, sideA, sideB, confirmationMessage } = this.state
     return (
-      <div className="col-4 offset-md-4 mt-2 p-3 border rounded">
+      <form className="col-4 offset-md-4 mt-2 p-3 border rounded" onSubmit={this.handleSubmit}>
         <h4 className="text-center">Create a Flash Card</h4>
         <div className="form-group">
           <label htmlFor="topic">Topic: </label>
           <input
             className="form-control"
             id="topic"
+            name="topic"
             type="text"
             value={topic}
             onChange={this.handleChange}>
           </input>
         </div>
         <div className="form-group">
-          <label htmlFor="sideA">Side A: </label>
+          <label htmlFor="side-a">Side A: </label>
           <input
             className="form-control"
-            id="sideA"
+            id="side-a"
+            name="sideA"
             type="text"
             value={sideA}
             onChange={this.handleChange}>
           </input>
         </div>
         <div className="form-group">
-          <label htmlFor="sideB">Side B: </label>
+          <label htmlFor="side-b">Side B: </label>
           <textarea
             className="form-control"
-            id="sideB"
+            id="side-b"
+            name="sideB"
             type="text"
             rows="4"
             value={sideB}
@@ -92,15 +98,13 @@ export default class CreateCard extends React.Component {
         <div className="text-center">
           <button
             className="btn btn-primary"
-            id="submitCard"
-            type="submit"
-            onClick={() => this.handleSubmit()}>
+            type="submit">
             {this.props.selected ? 'Save Card' : 'Create Card'}
           </button>
           {confirmationMessage &&
-            <p className="mt-2 mb-0">Flashcard saved.</p>}
+            <p className="mt-2 mb-0">{confirmationMessage}</p>}
         </div>
-      </div>
+      </form>
     )
   }
 }

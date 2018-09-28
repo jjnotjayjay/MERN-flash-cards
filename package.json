@@ -1,11 +1,12 @@
 {
-  "name": "react-component-validated-input",
+  "name": "react-flash-cards",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify index.js -vd -t babelify -o main.js"
+    "watch": "watchify src/index.js -vd -t babelify -o main.js",
+    "build": "browserify src/index.js -t babelify -o main.js"
   },
   "keywords": [],
   "author": "",

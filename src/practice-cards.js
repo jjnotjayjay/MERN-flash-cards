@@ -38,6 +38,7 @@ export default class PracticeCards extends React.Component {
     const { currentCard, showAnswer } = this.state
     const { cards } = this.props
     const currentIndex = this.getPositiveModForCardIndex(currentCard, cards.length)
+    const cardToRender = cards[currentIndex]
     let showAnswerIconClass = 'fas fa-chevron-circle-right show-answer-icon pointer'
     if (showAnswer) {
       showAnswerIconClass += ' rotate'
@@ -48,13 +49,13 @@ export default class PracticeCards extends React.Component {
         <i className="fas fa-chevron-left fa-2x left-arrow pointer" onClick={() => this.changeCard('left')}></i>
         <div className="card w-100">
           <div className="card-body">
-            <p className="text-muted card-subtitle text-right font-italic">{cards[currentIndex].topic}</p>
-            <h4 className="card-title text-center mt-1">{cards[currentIndex].sideA}</h4>
+            <p className="text-muted card-subtitle text-right font-italic">{cardToRender.topic}</p>
+            <h4 className="card-title text-center mt-1">{cardToRender.sideA}</h4>
             <div onClick={this.toggleAnswer}>
               <i className={showAnswerIconClass}></i>
               <span className="font-italic ml-2 show-answer-text">Show answer</span>
             </div>
-            <p className={showAnswer ? 'mt-2 text-center' : 'hidden'}>{cards[currentIndex].sideB}</p>
+            <p className={showAnswer ? 'mt-2 text-center' : 'hidden'}>{cardToRender.sideB}</p>
           </div>
         </div>
         <i className="fas fa-chevron-right fa-2x pointer right-arrow" onClick={() => this.changeCard('right')}></i>
