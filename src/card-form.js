@@ -59,7 +59,7 @@ export default class CardForm extends React.Component {
   render() {
     const { topic, sideA, sideB, confirmationMessage } = this.state
     return (
-      <form className="col-4 offset-md-4 mt-2 border rounded card-body" onSubmit={this.handleSubmit}>
+      <form className="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 mt-2 border rounded card-body" onSubmit={this.handleSubmit}>
         <h4 className="text-center">Create a Flash Card</h4>
         <div className="form-group">
           <label htmlFor="topic">Topic: </label>

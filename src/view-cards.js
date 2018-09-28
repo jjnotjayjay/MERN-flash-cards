@@ -11,15 +11,15 @@ function NoCards(props) {
 
 function RenderCards(props) {
   return (
-    <div className="col-6 offset-md-3">
+    <div className="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
       {props.cards.map((card, index) => {
         return (
-          <div className="card mb-4 mt-2" key={index}>
+          <div className="card mb-4 mt-2 card-height" key={index}>
             <div className="card-body">
               <p className="card-subtitle text-muted text-right font-italic">{card.topic}</p>
               <h4 className="card-title">{card.sideA}</h4>
               <hr/>
-              <p className="card-text">{card.sideB}</p>
+              <p className="card-text text-height">{card.sideB}</p>
               <i className="fas fa-times float-right pointer" onClick={() => props.deleteCard(card.id)}></i>
               <i className="fas fa-edit float-right mr-3 pointer" onClick={() => props.updateSelected(card.id)}></i>
             </div>
