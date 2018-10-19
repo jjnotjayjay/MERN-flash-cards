@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "watchify src/index.js -vd -t babelify -o main.js",
-    "build": "browserify src/index.js -t babelify -o main.js"
+    "build": "browserify src/index.js -t babelify -o main.js",
+    "seed": "node database/setup.js"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,12 @@
     ]
   },
   "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babelify": "^8.0.0",
+    "browserify": "^16.2.2",
+    "dotenv": "^6.1.0",
     "eslint": "5.3.0",
     "eslint-config-standard": "11.0.0",
     "eslint-plugin-import": "2.13.0",
@@ -37,18 +44,15 @@
     "eslint-plugin-promise": "3.8.0",
     "eslint-plugin-react": "7.10.0",
     "eslint-plugin-standard": "3.1.0",
+    "express": "^4.16.4",
     "htmlhint": "0.9.13",
     "husky": "1.0.0-rc.13",
     "lint-staged": "7.2.2",
-    "stylelint": "9.4.0",
-    "stylelint-config-standard": "18.2.0",
-    "babel-core": "^6.26.3",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babelify": "^8.0.0",
-    "browserify": "^16.2.2",
+    "mongodb": "^3.1.8",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "stylelint": "9.4.0",
+    "stylelint-config-standard": "18.2.0",
     "watchify": "^3.11.0"
   }
 }
