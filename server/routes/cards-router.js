@@ -27,6 +27,14 @@ function CardsRouter(collection) {
       .catch(err => next(err))
   })
 
+  router.delete('/', (req, res, next) => {
+    const { id } = req.body
+    return collection
+      .findOneAndDelete({ id })
+      .then(() => res.sendStatus(204))
+      .catch(err => next(err))
+  })
+
   return router
 }
 
