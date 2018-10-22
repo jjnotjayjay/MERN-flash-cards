@@ -3,9 +3,12 @@ const express = require('express')
 function CardsRouter(collection) {
   const router = express.Router()
 
-  router.get('/', (req, res) => {
-    console.log('Get Request received')
-    res.json('You sent a get request.')
+  router.get('/', (req, res, next) => {
+    collection
+      .find({})
+      .toArray()
+      .then(cards => res.json(cards))
+      .catch(err => next(err))
   })
 
   return router
