@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify src/index.js -vd -t babelify -o main.js",
-    "build": "browserify src/index.js -t babelify -o main.js",
+    "watch": "watchify src/index.js -vd -t babelify -o server/public/main.js",
+    "build": "browserify src/index.js -t babelify -o server/public/main.js",
     "seed": "node database/setup.js"
   },
   "keywords": [],
