@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "watchify src/index.js -vd -t babelify -o server/public/main.js",
     "build": "browserify src/index.js -d -t babelify -o server/public/main.js",
-    "seed": "node database/setup.js"
+    "seed": "node database/setup.js",
+    "watch-server": "nodemon server/index.js"
   },
   "keywords": [],
   "author": "",
@@ -49,6 +50,7 @@
     "husky": "1.0.0-rc.13",
     "lint-staged": "7.2.2",
     "mongodb": "^3.1.8",
+    "nodemon": "^1.18.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "stylelint": "9.4.0",
