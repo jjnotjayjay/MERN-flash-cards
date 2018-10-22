@@ -2,9 +2,9 @@ const { MongoClient } = require('mongodb')
 require('dotenv/config')
 
 const seedCards = [
-  { question: 'What are the six falsy values?', answer: '0, NaN, null, false, "", undefined' },
-  { question: 'What are truthy values in JavaScript?', answer: 'Any value that is not one of the six falsy values.' },
-  { question: 'What is the meaning of life?', answer: '42' }
+  { topic: 'JavaScript', question: 'What are the six falsy values?', answer: '0, NaN, null, false, "", undefined' },
+  { topic: 'JavaScript', question: 'What are truthy values in JavaScript?', answer: 'Any value that is not one of the six falsy values.' },
+  { topic: 'Hitchhiking', question: 'What is the meaning of life?', answer: '42' }
 ]
 
 MongoClient
