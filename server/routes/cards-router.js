@@ -12,10 +12,18 @@ function CardsRouter(collection) {
   })
 
   router.post('/', (req, res, next) => {
-    const { id, question, answer } = req.body
+    const { id, topic, question, answer } = req.body
     return collection
-      .insertOne({ id, question, answer })
+      .insertOne({ id, topic, question, answer })
       .then(result => res.json(result.ops[0]))
+      .catch(err => next(err))
+  })
+
+  router.put('/', (req, res, next) => {
+    const { id, topic, question, answer } = req.body
+    return collection
+      .findOneAndUpdate({ id }, { $set: { topic, question, answer } }, { returnOriginal: false })
+      .then(result => res.json(result.value))
       .catch(err => next(err))
   })
 
