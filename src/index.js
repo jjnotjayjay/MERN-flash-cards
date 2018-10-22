@@ -4,17 +4,16 @@ import NavBar from './nav-bar.js'
 import ViewCards from './view-cards.js'
 import CardForm from './card-form.js'
 import PracticeCards from './practice-cards.js'
+import uuid from 'uuid/v4'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     const initialCards = JSON.parse(localStorage.getItem('flashcards')) || []
-    const initialId = JSON.parse(localStorage.getItem('nextId')) || 1
     this.state = {
       view: 'view',
       flashcards: initialCards,
-      selectedCard: null,
-      nextId: initialId
+      selectedCard: null
     }
     this.onUnload = this.onUnload.bind(this)
     this.updateView = this.updateView.bind(this)
@@ -29,17 +28,12 @@ class App extends React.Component {
 
   onUnload() {
     localStorage.setItem('flashcards', JSON.stringify(this.state.flashcards))
-    localStorage.setItem('nextId', JSON.stringify(this.state.nextId))
   }
 
   addCard(card) {
     const currentCards = [...this.state.flashcards]
     if (this.state.selectedCard === null) {
-      const id = this.state.nextId
-      currentCards.push(Object.assign({}, card, { id: id }))
-      this.setState({
-        nextId: id + 1
-      })
+      currentCards.push(Object.assign({}, card, { id: uuid() }))
     }
     else {
       const cardToUpdate = currentCards.find(card => card.id === this.state.selectedCard)
