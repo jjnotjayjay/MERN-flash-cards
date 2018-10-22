@@ -70,7 +70,12 @@ class App extends React.Component {
   }
 
   updateView(view) {
-    if (this.state.flashcards.length === 0 && view === 'practice') return
+    if (this.state.flashcards.length === 0 && view === 'practice') {
+      this.setState({
+        view: 'view'
+      })
+      return
+    }
     this.setState({
       view: view,
       selectedCard: null
