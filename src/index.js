@@ -9,10 +9,9 @@ import uuid from 'uuid/v4'
 class App extends React.Component {
   constructor(props) {
     super(props)
-    const initialCards = JSON.parse(localStorage.getItem('flashcards')) || []
     this.state = {
       view: 'view',
-      flashcards: initialCards,
+      flashcards: [],
       selectedCard: null
     }
     this.onUnload = this.onUnload.bind(this)
@@ -23,7 +22,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('beforeunload', this.onUnload)
+    fetch('/cards')
+      .then(res => res.json())
+      .then(cards => this.setState({ flashcards: cards }))
+      .catch(err => console.log(err))
   }
 
   onUnload() {
@@ -38,8 +40,8 @@ class App extends React.Component {
     else {
       const cardToUpdate = currentCards.find(card => card.id === this.state.selectedCard)
       cardToUpdate.topic = card.topic
-      cardToUpdate.sideA = card.sideA
-      cardToUpdate.sideB = card.sideB
+      cardToUpdate.question = card.question
+      cardToUpdate.answer = card.answer
     }
     this.setState({
       flashcards: currentCards,
