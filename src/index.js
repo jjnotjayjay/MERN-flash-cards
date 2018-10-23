@@ -44,17 +44,26 @@ class App extends React.Component {
             selectedCard: null
           })
         })
+        .catch(err => console.log(err))
     }
     else {
-      const cardToUpdate = currentCards.find(card => card.id === this.state.selectedCard)
-      cardToUpdate.topic = card.topic
-      cardToUpdate.question = card.question
-      cardToUpdate.answer = card.answer
+      let cardToUpdate = currentCards.find(card => card.id === this.state.selectedCard)
+      const req = {
+        method: 'PUT',
+        body: JSON.stringify(Object.assign(cardToUpdate, card)),
+        headers: { 'Content-Type': 'application/json' }
+      }
+      fetch('/cards', req)
+        .then(res => res.json())
+        .then(updatedCard => {
+          cardToUpdate = updatedCard
+          this.setState({
+            flashcards: currentCards,
+            selectedCard: null
+          })
+        })
+        .catch(err => console.log(err))
     }
-    this.setState({
-      flashcards: currentCards,
-      selectedCard: null
-    })
   }
 
   deleteCard(id) {
