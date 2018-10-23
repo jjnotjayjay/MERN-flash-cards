@@ -14,7 +14,6 @@ class App extends React.Component {
       flashcards: [],
       selectedCard: null
     }
-    this.onUnload = this.onUnload.bind(this)
     this.updateView = this.updateView.bind(this)
     this.addCard = this.addCard.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
@@ -31,7 +30,20 @@ class App extends React.Component {
   addCard(card) {
     const currentCards = [...this.state.flashcards]
     if (this.state.selectedCard === null) {
-      currentCards.push(Object.assign({}, card, { id: uuid() }))
+      const req = {
+        method: 'POST',
+        body: JSON.stringify(Object.assign({}, card, { id: uuid() })),
+        headers: { 'Content-Type': 'application/json' }
+      }
+      fetch('/cards', req)
+        .then(res => res.json())
+        .then(cardToAdd => {
+          currentCards.push(cardToAdd)
+          this.setState({
+            flashcards: currentCards,
+            selectedCard: null
+          })
+        })
     }
     else {
       const cardToUpdate = currentCards.find(card => card.id === this.state.selectedCard)
