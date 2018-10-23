@@ -1,13 +1,17 @@
 {
   "name": "react-flash-cards",
   "version": "1.0.0",
+  "engines": {
+    "node": "10"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "watchify src/index.js -vd -t babelify -o server/public/main.js",
-    "build": "browserify src/index.js -d -t babelify -o server/public/main.js",
-    "seed": "node database/setup.js",
+    "postinstall": "browserify src/index.js -d -t babelify -o server/public/main.js",
+    "heroku-postbuild": "node database/setup.js",
+    "start": "node server/index.js",
     "watch-server": "nodemon server/index.js"
   },
   "keywords": [],
