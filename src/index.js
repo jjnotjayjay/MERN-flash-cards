@@ -28,10 +28,6 @@ class App extends React.Component {
       .catch(err => console.log(err))
   }
 
-  onUnload() {
-    localStorage.setItem('flashcards', JSON.stringify(this.state.flashcards))
-  }
-
   addCard(card) {
     const currentCards = [...this.state.flashcards]
     if (this.state.selectedCard === null) {
@@ -67,9 +63,7 @@ class App extends React.Component {
 
   updateView(view) {
     if (this.state.flashcards.length === 0 && view === 'practice') {
-      this.setState({
-        view: 'view'
-      })
+      this.setState({ view: 'view' })
       return
     }
     this.setState({
