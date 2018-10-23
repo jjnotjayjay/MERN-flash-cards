@@ -67,12 +67,21 @@ class App extends React.Component {
   }
 
   deleteCard(id) {
-    const currentCards = [...this.state.flashcards]
-    const indexToDelete = currentCards.findIndex(card => card.id === id)
-    currentCards.splice(indexToDelete, 1)
-    this.setState({
-      flashcards: currentCards
-    })
+    const req = {
+      method: 'DELETE',
+      body: JSON.stringify({ id }),
+      headers: { 'Content-Type': 'application/json' }
+    }
+    fetch('/cards', req)
+      .then(res => {
+        if (res.status === 204) {
+          const currentCards = [...this.state.flashcards]
+          const indexToDelete = currentCards.findIndex(card => card.id === id)
+          currentCards.splice(indexToDelete, 1)
+          this.setState({ flashcards: currentCards })
+        }
+      })
+      .catch(err => console.log(err))
   }
 
   updateSelected(id) {
