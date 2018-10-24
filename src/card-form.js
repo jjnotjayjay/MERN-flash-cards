@@ -3,13 +3,8 @@ import React from 'react'
 export default class CardForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      id: props.selected ? props.selected.id : '',
-      topic: props.selected ? props.selected.topic : '',
-      question: props.selected ? props.selected.question : '',
-      answer: props.selected ? props.selected.answer : '',
-      confirmationMessage: null
-    }
+    this.state = Object.assign({ id: '', topic: '', question: '', answer: '' }, props.selected, { confirmationMessage: null })
+
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.clearConfirmationMessage = this.clearConfirmationMessage.bind(this)
