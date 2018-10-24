@@ -4,6 +4,7 @@ export default class CardForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      id: props.selected ? props.selected.id : '',
       topic: props.selected ? props.selected.topic : '',
       question: props.selected ? props.selected.question : '',
       answer: props.selected ? props.selected.answer : '',
@@ -31,13 +32,9 @@ export default class CardForm extends React.Component {
   }
 
   handleSubmit(e) {
-    const { topic, question, answer } = this.state
+    const { id, topic, question, answer } = this.state
     if (topic && question && answer) {
-      this.props.addCard({
-        topic: topic,
-        question: question,
-        answer: answer
-      })
+      this.props.addCard({ id, topic, question, answer })
       const confirmationMessageContent = this.props.selected ? 'Flashcard saved.' : 'Flashcard created.'
       this.setState({
         topic: '',

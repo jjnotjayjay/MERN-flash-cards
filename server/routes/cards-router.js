@@ -19,16 +19,17 @@ function cardsRouter(collection) {
       .catch(err => next(err))
   })
 
-  router.put('/', (req, res, next) => {
-    const { id, topic, question, answer } = req.body
+  router.put('/:id', (req, res, next) => {
+    const { id } = req.params
+    const { topic, question, answer } = req.body
     return collection
       .findOneAndUpdate({ id }, { $set: { topic, question, answer } }, { returnOriginal: false })
       .then(result => res.json(result.value))
       .catch(err => next(err))
   })
 
-  router.delete('/', (req, res, next) => {
-    const { id } = req.body
+  router.delete('/:id', (req, res, next) => {
+    const { id } = req.params
     return collection
       .findOneAndDelete({ id })
       .then(() => res.sendStatus(204))

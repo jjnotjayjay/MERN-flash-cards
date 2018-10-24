@@ -53,7 +53,7 @@ class App extends React.Component {
         body: JSON.stringify(Object.assign(cardToUpdate, card)),
         headers: { 'Content-Type': 'application/json' }
       }
-      fetch('/cards', req)
+      fetch('/cards/' + card.id, req)
         .then(res => res.json())
         .then(updatedCard => {
           cardToUpdate = updatedCard
@@ -67,12 +67,8 @@ class App extends React.Component {
   }
 
   deleteCard(id) {
-    const req = {
-      method: 'DELETE',
-      body: JSON.stringify({ id }),
-      headers: { 'Content-Type': 'application/json' }
-    }
-    fetch('/cards', req)
+    const req = { method: 'DELETE' }
+    fetch('/cards/' + id, req)
       .then(res => {
         if (res.status === 204) {
           const currentCards = [...this.state.flashcards]
