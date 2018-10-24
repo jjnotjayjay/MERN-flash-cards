@@ -11,9 +11,7 @@ export default class PracticeCards extends React.Component {
   }
 
   toggleAnswer() {
-    this.setState({
-      showAnswer: !this.state.showAnswer
-    })
+    this.setState({ showAnswer: !this.state.showAnswer })
   }
 
   changeCard(direction) {

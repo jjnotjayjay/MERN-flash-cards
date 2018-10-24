@@ -26,9 +26,7 @@ export default class CardForm extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleSubmit(e) {
@@ -48,9 +46,7 @@ export default class CardForm extends React.Component {
   }
 
   clearConfirmationMessage() {
-    this.setState({
-      confirmationMessage: null
-    })
+    this.setState({ confirmationMessage: null })
   }
 
   render() {
