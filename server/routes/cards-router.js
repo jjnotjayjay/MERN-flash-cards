@@ -1,4 +1,5 @@
 const express = require('express')
+const uuid = require('uuid/v4')
 
 function cardsRouter(collection) {
   const router = express.Router()
@@ -12,9 +13,9 @@ function cardsRouter(collection) {
   })
 
   router.post('/', (req, res, next) => {
-    const { id, topic, question, answer } = req.body
+    const { topic, question, answer } = req.body
     return collection
-      .insertOne({ id, topic, question, answer })
+      .insertOne(Object.assign({ topic, question, answer }, { id: uuid() }))
       .then(result => res.json(result.ops[0]))
       .catch(err => next(err))
   })

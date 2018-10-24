@@ -4,7 +4,6 @@ import NavBar from './nav-bar.js'
 import ViewCards from './view-cards.js'
 import CardForm from './card-form.js'
 import PracticeCards from './practice-cards.js'
-import uuid from 'uuid/v4'
 
 class App extends React.Component {
   constructor(props) {
@@ -32,13 +31,14 @@ class App extends React.Component {
     if (this.state.selectedCard === null) {
       const req = {
         method: 'POST',
-        body: JSON.stringify(Object.assign({}, card, { id: uuid() })),
+        body: JSON.stringify(card),
         headers: { 'Content-Type': 'application/json' }
       }
       fetch('/cards', req)
         .then(res => res.json())
         .then(cardToAdd => {
           currentCards.push(cardToAdd)
+          console.log(currentCards)
           this.setState({
             flashcards: currentCards,
             selectedCard: null
