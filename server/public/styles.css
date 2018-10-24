@@ -72,11 +72,11 @@ body {
 .left-arrow {
   position: absolute;
   top: 45vh;
-  left: -3vw;
+  left: calc(-3vw - 5px);
 }
 
 .right-arrow {
   position: absolute;
   top: 45vh;
-  right: -3vw;
+  right: calc(-3vw - 5px);
 }
