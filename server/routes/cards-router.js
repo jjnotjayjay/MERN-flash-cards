@@ -1,6 +1,6 @@
 const express = require('express')
 
-function CardsRouter(collection) {
+function cardsRouter(collection) {
   const router = express.Router()
 
   router.get('/', (req, res, next) => {
@@ -38,4 +38,4 @@ function CardsRouter(collection) {
   return router
 }
 
-module.exports = CardsRouter
+module.exports = cardsRouter

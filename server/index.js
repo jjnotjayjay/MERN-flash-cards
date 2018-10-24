@@ -2,7 +2,7 @@ const express = require('express')
 const { MongoClient } = require('mongodb')
 const path = require('path')
 const bodyParser = require('body-parser')
-const CardsRouter = require('./routes/cards-router.js')
+const cardsRouter = require('./routes/cards-router.js')
 require('dotenv/config')
 
 MongoClient
@@ -14,7 +14,7 @@ MongoClient
 
     app.use(express.static(path.join(__dirname, 'public')))
     app.use(bodyParser.json())
-    app.use('/cards', CardsRouter(collection))
+    app.use('/cards', cardsRouter(collection))
 
     app.listen(process.env.PORT)
   })
