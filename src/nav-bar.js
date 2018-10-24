@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function NavBar(props) {
   return (
-    <div className="navbar bg-light">
+    <div className="navbar bg-light sticky-top">
       <div className="nav-item">
         <span className="nav-link nav-pointer" onClick={() => props.updateView('view')}>View Cards</span>
       </div>
