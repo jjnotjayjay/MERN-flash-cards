@@ -34,7 +34,7 @@ export default class CardForm extends React.Component {
   handleSubmit(e) {
     const { id, topic, question, answer } = this.state
     if (topic && question && answer) {
-      this.props.addCard({ id, topic, question, answer })
+      this.props.saveCard({ id, topic, question, answer })
       const confirmationMessageContent = this.props.selected ? 'Flashcard saved.' : 'Flashcard created.'
       this.setState({
         topic: '',

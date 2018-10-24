@@ -14,7 +14,7 @@ class App extends React.Component {
       selectedCard: null
     }
     this.updateView = this.updateView.bind(this)
-    this.addCard = this.addCard.bind(this)
+    this.saveCard = this.saveCard.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
     this.updateSelected = this.updateSelected.bind(this)
   }
@@ -26,44 +26,31 @@ class App extends React.Component {
       .catch(err => console.log(err))
   }
 
-  addCard(card) {
-    const currentCards = [...this.state.flashcards]
-    if (this.state.selectedCard === null) {
-      const req = {
-        method: 'POST',
-        body: JSON.stringify(card),
-        headers: { 'Content-Type': 'application/json' }
-      }
-      fetch('/cards', req)
-        .then(res => res.json())
-        .then(cardToAdd => {
-          currentCards.push(cardToAdd)
-          console.log(currentCards)
-          this.setState({
-            flashcards: currentCards,
-            selectedCard: null
-          })
-        })
-        .catch(err => console.log(err))
+  saveCard(card) {
+    const { selectedCard, flashcards } = this.state
+    const url = selectedCard ? '/cards/' + card.id : '/cards'
+    const req = {
+      method: selectedCard ? 'PUT' : 'POST',
+      body: JSON.stringify(card),
+      headers: { 'Content-Type': 'application/json' }
     }
-    else {
-      let cardToUpdate = currentCards.find(card => card.id === this.state.selectedCard)
-      const req = {
-        method: 'PUT',
-        body: JSON.stringify(Object.assign(cardToUpdate, card)),
-        headers: { 'Content-Type': 'application/json' }
-      }
-      fetch('/cards/' + card.id, req)
-        .then(res => res.json())
-        .then(updatedCard => {
-          cardToUpdate = updatedCard
-          this.setState({
-            flashcards: currentCards,
-            selectedCard: null
-          })
+    fetch(url, req)
+      .then(res => res.json())
+      .then(cardResult => {
+        const currentCards = [...flashcards]
+        if (selectedCard) {
+          const indexToUpdate = currentCards.findIndex(card => card.id === selectedCard)
+          currentCards.splice(indexToUpdate, 1, cardResult)
+        }
+        else {
+          currentCards.push(cardResult)
+        }
+        this.setState({
+          flashcards: currentCards,
+          selectedCard: null
         })
-        .catch(err => console.log(err))
-    }
+      })
+      .catch(err => console.log(err))
   }
 
   deleteCard(id) {
@@ -107,7 +94,7 @@ class App extends React.Component {
         {view === 'view' &&
           <ViewCards cards={flashcards} updateView={this.updateView} updateSelected={this.updateSelected} deleteCard={this.deleteCard}/>}
         {view === 'create' &&
-          <CardForm selected={cardToUpdate} addCard={this.addCard}/>}
+          <CardForm selected={cardToUpdate} saveCard={this.saveCard}/>}
         {view === 'practice' &&
           <PracticeCards cards={flashcards}/>}
       </div>
