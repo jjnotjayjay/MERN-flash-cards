@@ -1,12 +1,18 @@
 {
   "name": "react-flash-cards",
   "version": "1.0.0",
+  "engines": {
+    "node": "10"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify src/index.js -vd -t babelify -o main.js",
-    "build": "browserify src/index.js -t babelify -o main.js"
+    "watch": "watchify src/index.js -vd -t babelify -o server/public/main.js",
+    "postinstall": "browserify src/index.js -d -t babelify -o server/public/main.js",
+    "heroku-postbuild": "node database/setup.js",
+    "start": "node server/index.js",
+    "watch-server": "nodemon server/index.js"
   },
   "keywords": [],
   "author": "",
@@ -30,25 +36,33 @@
     ]
   },
   "dependencies": {
-    "eslint": "5.3.0",
-    "eslint-config-standard": "11.0.0",
-    "eslint-plugin-import": "2.13.0",
-    "eslint-plugin-node": "7.0.1",
-    "eslint-plugin-promise": "3.8.0",
-    "eslint-plugin-react": "7.10.0",
-    "eslint-plugin-standard": "3.1.0",
-    "htmlhint": "0.9.13",
-    "husky": "1.0.0-rc.13",
-    "lint-staged": "7.2.2",
-    "stylelint": "9.4.0",
-    "stylelint-config-standard": "18.2.0",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.8",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babelify": "^8.0.0",
-    "browserify": "^16.2.2",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "browserify": "^16.2.3",
+    "eslint": "^5.3.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "htmlhint": "^0.9.13",
+    "husky": "^1.0.0-rc.13",
+    "lint-staged": "^7.2.2",
+    "nodemon": "^1.18.4",
+    "stylelint": "^9.4.0",
+    "stylelint-config-standard": "^18.2.0",
     "watchify": "^3.11.0"
   }
 }

@@ -17,10 +17,14 @@
 }
 
 body {
-  background: url('bg.jpg');
+  background: url('assets/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-.form-bg {
+.form-bg,
+.no-card-bg {
   background: white;
 }
 

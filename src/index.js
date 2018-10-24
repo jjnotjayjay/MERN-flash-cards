@@ -8,58 +8,63 @@ import PracticeCards from './practice-cards.js'
 class App extends React.Component {
   constructor(props) {
     super(props)
-    const initialCards = JSON.parse(localStorage.getItem('flashcards')) || []
-    const initialId = JSON.parse(localStorage.getItem('nextId')) || 1
     this.state = {
       view: 'view',
-      flashcards: initialCards,
-      selectedCard: null,
-      nextId: initialId
+      flashcards: [],
+      selectedCard: null
     }
-    this.onUnload = this.onUnload.bind(this)
     this.updateView = this.updateView.bind(this)
-    this.addCard = this.addCard.bind(this)
+    this.saveCard = this.saveCard.bind(this)
     this.deleteCard = this.deleteCard.bind(this)
     this.updateSelected = this.updateSelected.bind(this)
   }
 
   componentDidMount() {
-    window.addEventListener('beforeunload', this.onUnload)
+    fetch('/cards')
+      .then(res => res.json())
+      .then(cards => this.setState({ flashcards: cards }))
+      .catch(err => console.log(err))
   }
 
-  onUnload() {
-    localStorage.setItem('flashcards', JSON.stringify(this.state.flashcards))
-    localStorage.setItem('nextId', JSON.stringify(this.state.nextId))
-  }
-
-  addCard(card) {
-    const currentCards = [...this.state.flashcards]
-    if (this.state.selectedCard === null) {
-      const id = this.state.nextId
-      currentCards.push(Object.assign({}, card, { id: id }))
-      this.setState({
-        nextId: id + 1
+  saveCard(card) {
+    const { selectedCard, flashcards } = this.state
+    const url = selectedCard ? '/cards/' + card.id : '/cards'
+    const req = {
+      method: selectedCard ? 'PUT' : 'POST',
+      body: JSON.stringify(card),
+      headers: { 'Content-Type': 'application/json' }
+    }
+    fetch(url, req)
+      .then(res => res.json())
+      .then(cardResult => {
+        const currentCards = [...flashcards]
+        if (selectedCard) {
+          const indexToUpdate = currentCards.findIndex(card => card.id === selectedCard)
+          currentCards.splice(indexToUpdate, 1, cardResult)
+        }
+        else {
+          currentCards.push(cardResult)
+        }
+        this.setState({
+          flashcards: currentCards,
+          selectedCard: null
+        })
       })
-    }
-    else {
-      const cardToUpdate = currentCards.find(card => card.id === this.state.selectedCard)
-      cardToUpdate.topic = card.topic
-      cardToUpdate.sideA = card.sideA
-      cardToUpdate.sideB = card.sideB
-    }
-    this.setState({
-      flashcards: currentCards,
-      selectedCard: null
-    })
+      .catch(err => console.log(err))
   }
 
   deleteCard(id) {
-    const currentCards = [...this.state.flashcards]
-    const indexToDelete = currentCards.findIndex(card => card.id === id)
-    currentCards.splice(indexToDelete, 1)
-    this.setState({
-      flashcards: currentCards
-    })
+    const req = { method: 'DELETE' }
+    fetch('/cards/' + id, req)
+      .then(res => {
+        if (res.status === 204) {
+          const currentCards = [...this.state.flashcards]
+          const indexToDelete = currentCards.findIndex(card => card.id === id)
+          currentCards.splice(indexToDelete, 1)
+          this.setState({ flashcards: currentCards })
+        }
+      })
+      .catch(err => console.log(err))
   }
 
   updateSelected(id) {
@@ -70,6 +75,10 @@ class App extends React.Component {
   }
 
   updateView(view) {
+    if (this.state.flashcards.length === 0 && view === 'practice') {
+      this.setState({ view: 'view' })
+      return
+    }
     this.setState({
       view: view,
       selectedCard: null
@@ -85,7 +94,7 @@ class App extends React.Component {
         {view === 'view' &&
           <ViewCards cards={flashcards} updateView={this.updateView} updateSelected={this.updateSelected} deleteCard={this.deleteCard}/>}
         {view === 'create' &&
-          <CardForm selected={cardToUpdate} addCard={this.addCard}/>}
+          <CardForm selected={cardToUpdate} saveCard={this.saveCard}/>}
         {view === 'practice' &&
           <PracticeCards cards={flashcards}/>}
       </div>

@@ -3,12 +3,8 @@ import React from 'react'
 export default class CardForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      topic: props.selected ? props.selected.topic : '',
-      sideA: props.selected ? props.selected.sideA : '',
-      sideB: props.selected ? props.selected.sideB : '',
-      confirmationMessage: null
-    }
+    this.state = Object.assign({ id: '', topic: '', question: '', answer: '' }, props.selected, { confirmationMessage: null })
+
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.clearConfirmationMessage = this.clearConfirmationMessage.bind(this)
@@ -18,31 +14,25 @@ export default class CardForm extends React.Component {
     if (this.props.selected !== prevProps.selected) {
       this.setState({
         topic: '',
-        sideA: '',
-        sideB: ''
+        question: '',
+        answer: ''
       })
     }
   }
 
   handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleSubmit(e) {
-    const { topic, sideA, sideB } = this.state
-    if (topic && sideA && sideB) {
-      this.props.addCard({
-        topic: topic,
-        sideA: sideA,
-        sideB: sideB
-      })
+    const { id, topic, question, answer } = this.state
+    if (topic && question && answer) {
+      this.props.saveCard({ id, topic, question, answer })
       const confirmationMessageContent = this.props.selected ? 'Flashcard saved.' : 'Flashcard created.'
       this.setState({
         topic: '',
-        sideA: '',
-        sideB: '',
+        question: '',
+        answer: '',
         confirmationMessage: confirmationMessageContent
       })
       window.setTimeout(this.clearConfirmationMessage, 3000)
@@ -51,13 +41,11 @@ export default class CardForm extends React.Component {
   }
 
   clearConfirmationMessage() {
-    this.setState({
-      confirmationMessage: null
-    })
+    this.setState({ confirmationMessage: null })
   }
 
   render() {
-    const { topic, sideA, sideB, confirmationMessage } = this.state
+    const { topic, question, answer, confirmationMessage } = this.state
     return (
       <form className="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 mt-2 border rounded card-body shadow form-bg" onSubmit={this.handleSubmit}>
         <h4 className="text-center">Create a Flash Card</h4>
@@ -77,9 +65,9 @@ export default class CardForm extends React.Component {
           <input
             className="form-control"
             id="side-a"
-            name="sideA"
+            name="question"
             type="text"
-            value={sideA}
+            value={question}
             onChange={this.handleChange}>
           </input>
         </div>
@@ -88,10 +76,10 @@ export default class CardForm extends React.Component {
           <textarea
             className="form-control"
             id="side-b"
-            name="sideB"
+            name="answer"
             type="text"
             rows="4"
-            value={sideB}
+            value={answer}
             onChange={this.handleChange}>
           </textarea>
         </div>
