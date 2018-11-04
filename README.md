@@ -1,20 +1,22 @@
 # MERN-flash-cards
-A flash card app for people to quiz themselves with.
+A full-stack React.js flash card app with an Express/MongoDB back-end for self-learners who want to expand their knowledge.
 
 **[Live Demo](https://jjnotjayjay-mern-flash-cards.herokuapp.com/)**
 
 ## Create, Read, Update, and Delete Flash Cards
+![crud-mern-flash-cards](https://user-images.githubusercontent.com/39274776/47968502-c1830f80-e01f-11e8-857f-1e2ddce3048e.gif)
 
 ## Practice Flash Cards
+![practice-mern-flash-cards](https://user-images.githubusercontent.com/39274776/47968517-fd1dd980-e01f-11e8-94b8-812044eb1631.gif)
 
 # Technologies Used
 * React.js
 * Express.js
 * MongoDB
 * JavaScript
+* Bootstrap 4
 * HTML5
 * CSS3
-* Bootstrap 4
 
 # Usage
 ```
