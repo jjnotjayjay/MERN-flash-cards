@@ -1,4 +1,4 @@
-# MERN-flash-cards
+# MERN Flash Cards
 A full-stack React.js flash card app with an Express/MongoDB back-end for self-learners who want to expand their knowledge.
 
 **[Live Demo](https://jjnotjayjay-mern-flash-cards.herokuapp.com/)**
